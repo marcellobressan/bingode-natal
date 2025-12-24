@@ -203,6 +203,8 @@
             border: 5px solid #d4af37;
             overflow-y: auto;
             max-height: 800px;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Scrollbar customizada para cards-section */
@@ -256,18 +258,135 @@
         }
 
         .cards-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            display: grid;
+            gap: 15px;
+            flex: 1;
+            align-content: start;
+        }
+
+        /* 1 cartela: uma coluna, tamanho grande */
+        .cards-container.cards-1 {
+            grid-template-columns: 1fr;
+        }
+
+        /* 2 cartelas: uma coluna, tamanho médio */
+        .cards-container.cards-2 {
+            grid-template-columns: 1fr;
+        }
+
+        /* 3 cartelas: uma coluna, tamanho compacto */
+        .cards-container.cards-3 {
+            grid-template-columns: 1fr;
+        }
+
+        /* 4-5 cartelas: duas colunas */
+        .cards-container.cards-4,
+        .cards-container.cards-5 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* 6+ cartelas: duas colunas, mais compactas */
+        .cards-container.cards-many {
+            grid-template-columns: repeat(2, 1fr);
         }
 
         .bingo-card {
             background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
             border: 5px solid #2d5a3d;
             border-radius: 15px;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        /* Ajustes de tamanho baseados na quantidade de cartelas */
+
+        /* 1-2 cartelas: tamanho normal */
+        .cards-container.cards-1 .bingo-card,
+        .cards-container.cards-2 .bingo-card {
+            padding: 15px;
+        }
+
+        .cards-container.cards-1 .card-number,
+        .cards-container.cards-2 .card-number {
+            font-size: 1.5em;
+        }
+
+        /* 3 cartelas: um pouco menor */
+        .cards-container.cards-3 .bingo-card {
+            padding: 12px;
+        }
+
+        .cards-container.cards-3 .card-number {
+            font-size: 1.3em;
+        }
+
+        .cards-container.cards-3 .player-name-input {
+            font-size: 1em;
+            padding: 10px 40px 10px 12px;
+        }
+
+        .cards-container.cards-3 .card-title {
+            font-size: 1.2em;
+        }
+
+        /* 4-5 cartelas: compacto */
+        .cards-container.cards-4 .bingo-card,
+        .cards-container.cards-5 .bingo-card {
+            padding: 10px;
+        }
+
+        .cards-container.cards-4 .card-number,
+        .cards-container.cards-5 .card-number {
+            font-size: 1.2em;
+        }
+
+        .cards-container.cards-4 .player-name-input,
+        .cards-container.cards-5 .player-name-input {
+            font-size: 0.95em;
+            padding: 8px 35px 8px 10px;
+        }
+
+        .cards-container.cards-4 .card-title,
+        .cards-container.cards-5 .card-title {
+            font-size: 1.1em;
+        }
+
+        .cards-container.cards-4 .player-name-label,
+        .cards-container.cards-5 .player-name-label {
+            font-size: 0.8em;
+        }
+
+        /* 6+ cartelas: muito compacto */
+        .cards-container.cards-many .bingo-card {
+            padding: 8px;
+        }
+
+        .cards-container.cards-many .card-number {
+            font-size: 1em;
+        }
+
+        .cards-container.cards-many .player-name-input {
+            font-size: 0.85em;
+            padding: 6px 30px 6px 8px;
+        }
+
+        .cards-container.cards-many .card-title {
+            font-size: 1em;
+        }
+
+        .cards-container.cards-many .player-name-label {
+            font-size: 0.75em;
+        }
+
+        .cards-container.cards-many .remove-card-button {
+            padding: 6px 12px;
+            font-size: 0.8em;
+        }
+
+        .cards-container.cards-many .edit-icon {
+            font-size: 1.1em;
         }
 
         .bingo-card.winner {
@@ -628,6 +747,38 @@
         let cardIdCounter = 0;
         let isGameActive = false;
 
+        // Atualizar layout das cartelas baseado na quantidade
+        function updateCardsLayout() {
+            const container = document.getElementById('cardsContainer');
+            const numCards = cards.length;
+
+            // Remover todas as classes anteriores
+            container.className = 'cards-container';
+
+            // Adicionar classe baseada no número de cartelas
+            if (numCards === 1) {
+                container.classList.add('cards-1');
+            } else if (numCards === 2) {
+                container.classList.add('cards-2');
+            } else if (numCards === 3) {
+                container.classList.add('cards-3');
+            } else if (numCards === 4) {
+                container.classList.add('cards-4');
+            } else if (numCards === 5) {
+                container.classList.add('cards-5');
+            } else if (numCards >= 6) {
+                container.classList.add('cards-many');
+            }
+
+            // Desabilitar scroll se todas as cartelas cabem
+            const cardsSection = document.querySelector('.cards-section');
+            if (numCards <= 3) {
+                cardsSection.style.overflowY = 'visible';
+            } else {
+                cardsSection.style.overflowY = 'auto';
+            }
+        }
+
         // Mensagens do Papai Noel
         const santaMessages = [
             "Ho Ho Ho! Vamos sortear mais um número! 🎅",
@@ -762,6 +913,7 @@
             });
 
             renderCard(cardId, numbers);
+            updateCardsLayout();
         }
 
         // Gerar cartela de bingo (5x5 com números únicos)
@@ -1069,6 +1221,7 @@
             if (cardDiv) {
                 cardDiv.remove();
             }
+            updateCardsLayout();
         }
 
         // Resetar jogo
