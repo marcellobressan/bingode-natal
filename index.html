@@ -269,25 +269,110 @@
             font-weight: bold;
         }
 
+        .player-name-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
         .player-name-input {
-            background: white;
+            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
             border: 3px solid #2d5a3d;
-            border-radius: 10px;
-            padding: 8px 12px;
+            border-radius: 12px;
+            padding: 12px 45px 12px 15px;
             font-size: 1.2em;
             color: #c41e3a;
             font-weight: bold;
             font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
             text-align: center;
-            margin-bottom: 10px;
             width: 100%;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            cursor: text;
+        }
+
+        .player-name-input:hover {
+            border-color: #d4af37;
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(45, 90, 61, 0.2);
         }
 
         .player-name-input:focus {
             outline: none;
             border-color: #d4af37;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            background: #fff;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            transform: scale(1.02);
+        }
+
+        .player-name-input::placeholder {
+            color: #999;
+            font-style: italic;
+        }
+
+        .edit-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3em;
+            pointer-events: none;
+            transition: all 0.3s;
+            opacity: 0.6;
+        }
+
+        .player-name-wrapper:hover .edit-icon {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .player-name-input:focus + .edit-icon {
+            opacity: 1;
+            color: #d4af37;
+            animation: editPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes editPulse {
+            0%, 100% { transform: translateY(-50%) scale(1.2); }
+            50% { transform: translateY(-50%) scale(1.4); }
+        }
+
+        .name-saved-feedback {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #2d5a3d;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .name-saved-feedback.show {
+            opacity: 1;
+            transform: scale(1);
+            animation: feedbackBounce 0.6s ease;
+        }
+
+        @keyframes feedbackBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .player-name-label {
+            display: block;
+            color: #2d5a3d;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: left;
+            padding-left: 5px;
         }
 
         .remove-card-button {
@@ -680,10 +765,20 @@
                     <div class="card-title">🎫 Cartela ${cardId + 1}</div>
                     <button class="remove-card-button" onclick="removeCard(${cardId})">❌ Remover</button>
                 </div>
-                <input type="text" class="player-name-input" id="player-name-${cardId}"
-                       value="${playerName}"
-                       onchange="updatePlayerName(${cardId}, this.value)"
-                       placeholder="Nome do jogador">
+                <div class="player-name-wrapper" id="name-wrapper-${cardId}">
+                    <label class="player-name-label">👤 Nome do Jogador:</label>
+                    <input type="text"
+                           class="player-name-input"
+                           id="player-name-${cardId}"
+                           value="${playerName}"
+                           onchange="updatePlayerName(${cardId}, this.value)"
+                           onblur="updatePlayerName(${cardId}, this.value)"
+                           onfocus="onNameFocus(${cardId})"
+                           placeholder="Clique para editar o nome..."
+                           maxlength="25">
+                    <span class="edit-icon">✏️</span>
+                    <span class="name-saved-feedback" id="feedback-${cardId}">✓ Salvo!</span>
+                </div>
                 <div class="card-grid">
             `;
 
@@ -708,9 +803,49 @@
         // Atualizar nome do jogador
         function updatePlayerName(cardId, newName) {
             const card = cards.find(c => c.id === cardId);
-            if (card) {
-                card.name = newName || `Jogador ${cardId + 1}`;
+            if (!card) return;
+
+            // Validar e limpar o nome
+            const cleanName = newName.trim();
+
+            // Se vazio, usar nome padrão
+            if (!cleanName) {
+                card.name = `Jogador ${cardId + 1}`;
+                const input = document.getElementById(`player-name-${cardId}`);
+                if (input) {
+                    input.value = card.name;
+                }
+            } else {
+                card.name = cleanName;
             }
+
+            // Mostrar feedback visual
+            showNameSavedFeedback(cardId);
+        }
+
+        // Mostrar feedback de nome salvo
+        function showNameSavedFeedback(cardId) {
+            const feedback = document.getElementById(`feedback-${cardId}`);
+            if (!feedback) return;
+
+            // Adicionar classe para mostrar
+            feedback.classList.add('show');
+
+            // Remover após 2 segundos
+            setTimeout(() => {
+                feedback.classList.remove('show');
+            }, 2000);
+        }
+
+        // Quando o campo de nome recebe foco
+        function onNameFocus(cardId) {
+            const input = document.getElementById(`player-name-${cardId}`);
+            if (!input) return;
+
+            // Selecionar todo o texto para facilitar a edição
+            setTimeout(() => {
+                input.select();
+            }, 50);
         }
 
         // Marcar/desmarcar número na cartela
