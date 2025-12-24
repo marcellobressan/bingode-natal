@@ -10,7 +10,10 @@ Um jogo de bingo temático de Natal, totalmente offline, para diversão em famí
 - **Efeitos Visuais**: Neve caindo, animações suaves e transições elegantes
 - **Sons Interativos**: Efeitos sonoros para sorteios e vitórias
 - **Múltiplas Cartelas**: Suporte para vários jogadores simultaneamente
+- **Nomes Personalizados**: Cada jogador pode personalizar o nome da sua cartela
+- **Marcação Automática**: Os números sorteados são automaticamente marcados nas cartelas
 - **Detecção Automática de Bingo**: Verifica automaticamente linha, coluna e cartela completa
+- **Anúncio de Vencedor**: Nome do jogador vencedor exibido em destaque na tela
 - **Design Responsivo**: Funciona em telas de todos os tamanhos
 - **Textos em Português**: Interface completamente em português brasileiro
 
@@ -20,15 +23,18 @@ Um jogo de bingo temático de Natal, totalmente offline, para diversão em famí
 
 1. **Abra o arquivo `index.html`** em qualquer navegador moderno (Chrome, Firefox, Safari, Edge)
 2. O jogo iniciará automaticamente com 2 cartelas
-3. Clique em **"Sortear Número"** para começar!
+3. **Personalize os nomes**: Clique no campo de nome de cada cartela e digite o nome do jogador
+4. Clique em **"Sortear Número"** para começar!
 
 ### Jogando
 
-1. **Sortear Números**: Clique no botão "🎲 Sortear Número" para o Papai Noel sortear um número aleatório
-2. **Marcar Cartelas**: Clique nos números das suas cartelas para marcá-los (apenas números já sorteados podem ser marcados)
-3. **Acompanhar**: Veja todos os números sorteados no painel "📋 Números Sorteados"
-4. **Adicionar Jogadores**: Clique em "➕ Adicionar Cartela" para criar novas cartelas
-5. **Vencer**: Complete uma linha, coluna ou cartela inteira para ganhar!
+1. **Personalizar Nomes**: Cada jogador pode editar o campo de nome acima da sua cartela
+2. **Sortear Números**: Clique no botão "🎲 Sortear Número" para o Papai Noel sortear um número aleatório
+3. **Marcação Automática**: Os números sorteados são automaticamente marcados em todas as cartelas que os possuem
+4. **Acompanhar**: Veja todos os números sorteados no painel "📋 Números Sorteados"
+5. **Adicionar Jogadores**: Clique em "➕ Adicionar Cartela" para criar novas cartelas
+6. **Vencer**: Complete uma linha, coluna ou cartela inteira para ganhar!
+7. **Anúncio de Vitória**: Quando um jogador ganhar, seu nome aparecerá em destaque na tela principal!
 
 ### Múltiplos Jogadores
 
@@ -57,13 +63,16 @@ O jogo detecta automaticamente três tipos de vitória:
 - ✅ Sorteio aleatório de números (1-90)
 - ✅ Geração automática de cartelas únicas
 - ✅ Espaço livre central (marcado com ★)
+- ✅ **Personalização de nomes dos jogadores** (novo!)
+- ✅ **Marcação automática de números** nas cartelas (novo!)
 - ✅ Detecção automática de vitórias
+- ✅ **Anúncio personalizado com nome do vencedor** (novo!)
 - ✅ Animações CSS suaves
 - ✅ Efeitos sonoros com Web Audio API
 - ✅ Histórico visual de números sorteados
 - ✅ Múltiplas cartelas simultâneas
-- ✅ Sistema de marcação interativa
-- ✅ Banner de vitória animado
+- ✅ Sistema de marcação interativa (manual + automática)
+- ✅ Banner de vitória animado com nome do jogador
 - ✅ Neve caindo em background
 - ✅ Papai Noel com expressões mutáveis
 - ✅ Mensagens motivacionais aleatórias
@@ -127,6 +136,25 @@ Os sons são gerados em tempo real e não requerem arquivos de áudio externos.
    - **Médio**: Primeira cartela com 2 linhas
    - **Completo**: Cartela cheia para vencer
 
+## 🆕 Novidades da Versão Atual
+
+### Personalização de Nomes
+- Cada cartela agora tem um campo editável para o nome do jogador
+- Basta clicar no campo de texto acima da cartela e digitar o nome desejado
+- Os nomes padrão são "Jogador 1", "Jogador 2", etc.
+
+### Marcação Automática
+- Os números sorteados são automaticamente marcados em todas as cartelas
+- Não é mais necessário clicar manualmente nos números
+- Economiza tempo e evita que jogadores percam números
+- Uma animação destaca cada número quando é marcado automaticamente
+
+### Anúncio Personalizado de Vitória
+- Quando um jogador ganha, seu nome personalizado aparece em grande destaque
+- O Papai Noel anuncia: "🎉 Parabéns [Nome do Jogador]! BINGO! 🎉"
+- O banner de vitória mostra claramente quem ganhou
+- Perfeito para celebrar o vencedor em família!
+
 ## 🐛 Solução de Problemas
 
 **O jogo não inicia:**
@@ -157,6 +185,19 @@ Desenvolvido com ❤️ para trazer a magia do Natal para sua família!
 
 ---
 
-**Versão**: 1.0
+**Versão**: 2.0
 **Data**: Dezembro 2025
 **Idioma**: Português Brasileiro 🇧🇷
+
+### Changelog
+
+**v2.0** - Melhorias de Personalização
+- ✨ Adicionado campo para personalizar nomes dos jogadores
+- ✨ Implementada marcação automática de números nas cartelas
+- ✨ Anúncio personalizado do vencedor com seu nome
+- 🎉 Experiência mais fluida e divertida para toda a família
+
+**v1.0** - Lançamento Inicial
+- 🎄 Jogo de bingo completo com tema natalino
+- 🎅 Papai Noel animado
+- 🎁 Sistema completo de sorteio e detecção de vitórias
