@@ -9,12 +9,14 @@ Um jogo de bingo temático de Natal, totalmente offline, para diversão em famí
 - **Interface Festiva**: Design natalino com cores vibrantes (vermelho, verde, dourado)
 - **Efeitos Visuais**: Neve caindo, animações suaves e transições elegantes
 - **Sons Interativos**: Efeitos sonoros para sorteios e vitórias
-- **Múltiplas Cartelas**: Suporte para vários jogadores simultaneamente
+- **Múltiplas Cartelas**: Suporte para vários jogadores simultaneamente (até 12 sem scroll!)
 - **Nomes Personalizados**: Cada jogador pode personalizar o nome da sua cartela
 - **Marcação Automática**: Os números sorteados são automaticamente marcados nas cartelas
 - **Detecção Automática de Bingo**: Verifica automaticamente linha, coluna e cartela completa
 - **Anúncio de Vencedor**: Nome do jogador vencedor exibido em destaque na tela
 - **Design Responsivo**: Funciona em telas de todos os tamanhos
+- **Otimizado para Widescreen**: Layout especialmente otimizado para displays 16:9
+- **Acessibilidade**: Estados de foco visíveis e navegação por teclado
 - **Textos em Português**: Interface completamente em português brasileiro
 
 ## 🎮 Como Jogar
@@ -185,11 +187,21 @@ Desenvolvido com ❤️ para trazer a magia do Natal para sua família!
 
 ---
 
-**Versão**: 2.0
+**Versão**: 3.0
 **Data**: Dezembro 2025
 **Idioma**: Português Brasileiro 🇧🇷
 
 ### Changelog
+
+**v3.0** - Otimização para Widescreen 16:9
+- 📺 Layout otimizado para displays 16:9 (1920x1080, 2560x1440, etc.)
+- 🎨 Seção do Papai Noel reduzida de 400px para 320px, dando mais espaço às cartelas
+- 📱 Suporte para até 4 colunas de cartelas em telas muito largas (1600px+)
+- 🎯 Espaçamentos e paddings otimizados para melhor aproveitamento do espaço vertical
+- ♿ Melhorias de acessibilidade com estados de foco visíveis em todos os botões
+- 🎨 Grade de números sorteados adaptativa (10, 15 ou 18 colunas conforme resolução)
+- ✨ Hierarquia visual aprimorada com tamanhos de fonte e espaçamentos otimizados
+- 🚀 Interface mais limpa e moderna seguindo melhores práticas de UI/UX
 
 **v2.0** - Melhorias de Personalização
 - ✨ Adicionado campo para personalizar nomes dos jogadores
