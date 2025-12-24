@@ -264,6 +264,21 @@
             align-content: start;
         }
 
+        /* Reduzir gap para layouts com muitas cartelas */
+        .cards-container.cards-6,
+        .cards-container.cards-7,
+        .cards-container.cards-8 {
+            gap: 12px;
+        }
+
+        .cards-container.cards-9,
+        .cards-container.cards-10,
+        .cards-container.cards-11,
+        .cards-container.cards-12,
+        .cards-container.cards-many {
+            gap: 10px;
+        }
+
         /* 1 cartela: uma coluna, tamanho grande */
         .cards-container.cards-1 {
             grid-template-columns: 1fr;
@@ -285,9 +300,28 @@
             grid-template-columns: repeat(2, 1fr);
         }
 
-        /* 6+ cartelas: duas colunas, mais compactas */
-        .cards-container.cards-many {
+        /* 6-8 cartelas: duas colunas, mais compactas */
+        .cards-container.cards-6,
+        .cards-container.cards-7,
+        .cards-container.cards-8 {
             grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* 9-10 cartelas: três colunas */
+        .cards-container.cards-9,
+        .cards-container.cards-10 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* 11-12 cartelas: três colunas, ultra compacto */
+        .cards-container.cards-11,
+        .cards-container.cards-12 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* 13+ cartelas: scroll habilitado */
+        .cards-container.cards-many {
+            grid-template-columns: repeat(3, 1fr);
         }
 
         .bingo-card {
@@ -358,35 +392,188 @@
             font-size: 0.8em;
         }
 
-        /* 6+ cartelas: muito compacto */
-        .cards-container.cards-many .bingo-card {
+        /* 6-8 cartelas: muito compacto (2 colunas) */
+        .cards-container.cards-6 .bingo-card,
+        .cards-container.cards-7 .bingo-card,
+        .cards-container.cards-8 .bingo-card {
             padding: 8px;
         }
 
-        .cards-container.cards-many .card-number {
+        .cards-container.cards-6 .card-number,
+        .cards-container.cards-7 .card-number,
+        .cards-container.cards-8 .card-number {
             font-size: 1em;
         }
 
-        .cards-container.cards-many .player-name-input {
+        .cards-container.cards-6 .player-name-input,
+        .cards-container.cards-7 .player-name-input,
+        .cards-container.cards-8 .player-name-input {
             font-size: 0.85em;
             padding: 6px 30px 6px 8px;
         }
 
-        .cards-container.cards-many .card-title {
-            font-size: 1em;
+        .cards-container.cards-6 .card-title,
+        .cards-container.cards-7 .card-title,
+        .cards-container.cards-8 .card-title {
+            font-size: 0.95em;
         }
 
-        .cards-container.cards-many .player-name-label {
+        .cards-container.cards-6 .player-name-label,
+        .cards-container.cards-7 .player-name-label,
+        .cards-container.cards-8 .player-name-label {
+            font-size: 0.7em;
+        }
+
+        .cards-container.cards-6 .remove-card-button,
+        .cards-container.cards-7 .remove-card-button,
+        .cards-container.cards-8 .remove-card-button {
+            padding: 5px 10px;
             font-size: 0.75em;
         }
 
-        .cards-container.cards-many .remove-card-button {
-            padding: 6px 12px;
+        .cards-container.cards-6 .edit-icon,
+        .cards-container.cards-7 .edit-icon,
+        .cards-container.cards-8 .edit-icon {
+            font-size: 1em;
+        }
+
+        /* 9-10 cartelas: compacto (3 colunas) */
+        .cards-container.cards-9 .bingo-card,
+        .cards-container.cards-10 .bingo-card {
+            padding: 6px;
+        }
+
+        .cards-container.cards-9 .card-number,
+        .cards-container.cards-10 .card-number {
+            font-size: 0.95em;
+        }
+
+        .cards-container.cards-9 .player-name-input,
+        .cards-container.cards-10 .player-name-input {
+            font-size: 0.8em;
+            padding: 5px 28px 5px 6px;
+        }
+
+        .cards-container.cards-9 .card-title,
+        .cards-container.cards-10 .card-title {
+            font-size: 0.9em;
+        }
+
+        .cards-container.cards-9 .player-name-label,
+        .cards-container.cards-10 .player-name-label {
+            font-size: 0.65em;
+            margin-bottom: 3px;
+        }
+
+        .cards-container.cards-9 .remove-card-button,
+        .cards-container.cards-10 .remove-card-button {
+            padding: 4px 8px;
+            font-size: 0.7em;
+        }
+
+        .cards-container.cards-9 .edit-icon,
+        .cards-container.cards-10 .edit-icon {
+            font-size: 0.95em;
+        }
+
+        .cards-container.cards-9 .card-grid,
+        .cards-container.cards-10 .card-grid {
+            gap: 6px;
+        }
+
+        /* 11-12 cartelas: ultra compacto (3 colunas) */
+        .cards-container.cards-11 .bingo-card,
+        .cards-container.cards-12 .bingo-card {
+            padding: 5px;
+            border: 3px solid #2d5a3d;
+        }
+
+        .cards-container.cards-11 .card-number,
+        .cards-container.cards-12 .card-number {
+            font-size: 0.85em;
+            border: 2px solid #2d5a3d;
+        }
+
+        .cards-container.cards-11 .player-name-input,
+        .cards-container.cards-12 .player-name-input {
+            font-size: 0.75em;
+            padding: 4px 25px 4px 5px;
+        }
+
+        .cards-container.cards-11 .card-title,
+        .cards-container.cards-12 .card-title {
+            font-size: 0.85em;
+        }
+
+        .cards-container.cards-11 .player-name-label,
+        .cards-container.cards-12 .player-name-label {
+            font-size: 0.6em;
+            margin-bottom: 2px;
+        }
+
+        .cards-container.cards-11 .remove-card-button,
+        .cards-container.cards-12 .remove-card-button {
+            padding: 3px 6px;
+            font-size: 0.65em;
+        }
+
+        .cards-container.cards-11 .edit-icon,
+        .cards-container.cards-12 .edit-icon {
+            font-size: 0.9em;
+            right: 8px;
+        }
+
+        .cards-container.cards-11 .card-grid,
+        .cards-container.cards-12 .card-grid {
+            gap: 5px;
+        }
+
+        .cards-container.cards-11 .player-name-wrapper,
+        .cards-container.cards-12 .player-name-wrapper {
+            margin-bottom: 8px;
+        }
+
+        .cards-container.cards-11 .name-saved-feedback,
+        .cards-container.cards-12 .name-saved-feedback {
+            font-size: 0.7em;
+            padding: 3px 8px;
+        }
+
+        /* 13+ cartelas: mínimo possível com scroll */
+        .cards-container.cards-many .bingo-card {
+            padding: 5px;
+            border: 3px solid #2d5a3d;
+        }
+
+        .cards-container.cards-many .card-number {
+            font-size: 0.8em;
+            border: 2px solid #2d5a3d;
+        }
+
+        .cards-container.cards-many .player-name-input {
+            font-size: 0.7em;
+            padding: 4px 25px 4px 5px;
+        }
+
+        .cards-container.cards-many .card-title {
             font-size: 0.8em;
         }
 
+        .cards-container.cards-many .player-name-label {
+            font-size: 0.6em;
+        }
+
+        .cards-container.cards-many .remove-card-button {
+            padding: 3px 6px;
+            font-size: 0.6em;
+        }
+
         .cards-container.cards-many .edit-icon {
-            font-size: 1.1em;
+            font-size: 0.85em;
+        }
+
+        .cards-container.cards-many .card-grid {
+            gap: 4px;
         }
 
         .bingo-card.winner {
@@ -766,16 +953,32 @@
                 container.classList.add('cards-4');
             } else if (numCards === 5) {
                 container.classList.add('cards-5');
-            } else if (numCards >= 6) {
+            } else if (numCards === 6) {
+                container.classList.add('cards-6');
+            } else if (numCards === 7) {
+                container.classList.add('cards-7');
+            } else if (numCards === 8) {
+                container.classList.add('cards-8');
+            } else if (numCards === 9) {
+                container.classList.add('cards-9');
+            } else if (numCards === 10) {
+                container.classList.add('cards-10');
+            } else if (numCards === 11) {
+                container.classList.add('cards-11');
+            } else if (numCards === 12) {
+                container.classList.add('cards-12');
+            } else if (numCards >= 13) {
                 container.classList.add('cards-many');
             }
 
-            // Desabilitar scroll se todas as cartelas cabem
+            // Controlar scroll: desabilita até 12 cartelas, habilita para 13+
             const cardsSection = document.querySelector('.cards-section');
-            if (numCards <= 3) {
+            if (numCards <= 12) {
                 cardsSection.style.overflowY = 'visible';
+                cardsSection.style.maxHeight = 'none';
             } else {
                 cardsSection.style.overflowY = 'auto';
+                cardsSection.style.maxHeight = '800px';
             }
         }
 
