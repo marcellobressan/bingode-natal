@@ -68,9 +68,10 @@
 
         .game-area {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 400px 1fr;
             gap: 20px;
             margin-bottom: 30px;
+            align-items: start;
         }
 
         .santa-section {
@@ -157,6 +158,7 @@
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border: 5px solid #d4af37;
+            margin-bottom: 30px;
         }
 
         .history-title {
@@ -196,9 +198,31 @@
         .cards-section {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border: 5px solid #d4af37;
+            overflow-y: auto;
+            max-height: 800px;
+        }
+
+        /* Scrollbar customizada para cards-section */
+        .cards-section::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .cards-section::-webkit-scrollbar-track {
+            background: rgba(45, 90, 61, 0.1);
+            border-radius: 10px;
+        }
+
+        .cards-section::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #2d5a3d 0%, #165a2f 100%);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .cards-section::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #d4af37 0%, #f4c430 100%);
         }
 
         .cards-header {
@@ -232,8 +256,8 @@
         }
 
         .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 20px;
         }
 
@@ -480,6 +504,20 @@
             min-height: 60px;
         }
 
+        @media (max-width: 1200px) {
+            .game-area {
+                grid-template-columns: 350px 1fr;
+            }
+
+            .santa {
+                font-size: 120px;
+            }
+
+            .cards-section {
+                max-height: 700px;
+            }
+        }
+
         @media (max-width: 1024px) {
             .game-area {
                 grid-template-columns: 1fr;
@@ -499,8 +537,13 @@
                 font-size: 4em;
             }
 
+            .cards-section {
+                max-height: none;
+                overflow-y: visible;
+            }
+
             .cards-container {
-                grid-template-columns: 1fr;
+                flex-direction: column;
             }
         }
 
@@ -560,20 +603,20 @@
                 </button>
             </div>
 
-            <div class="history-section">
-                <h2 class="history-title">📋 Números Sorteados</h2>
-                <div class="numbers-grid" id="numbersGrid"></div>
+            <div class="cards-section">
+                <div class="cards-header">
+                    <h2 class="cards-title">🎫 Cartelas de Bingo</h2>
+                    <button class="add-card-button" onclick="addBingoCard()">
+                        ➕ Adicionar Cartela
+                    </button>
+                </div>
+                <div class="cards-container" id="cardsContainer"></div>
             </div>
         </div>
 
-        <div class="cards-section">
-            <div class="cards-header">
-                <h2 class="cards-title">🎫 Cartelas de Bingo</h2>
-                <button class="add-card-button" onclick="addBingoCard()">
-                    ➕ Adicionar Cartela
-                </button>
-            </div>
-            <div class="cards-container" id="cardsContainer"></div>
+        <div class="history-section">
+            <h2 class="history-title">📋 Números Sorteados</h2>
+            <div class="numbers-grid" id="numbersGrid"></div>
         </div>
     </div>
 
